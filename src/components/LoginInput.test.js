@@ -8,7 +8,8 @@
  */
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import LoginInput from './LoginInput';
 
@@ -17,11 +18,15 @@ import '@testing-library/jest-dom';
 describe('LoginInput component', () => {
   it('should handle email typing correctly', async () => {
     // Arrange
-    render(<LoginInput login={() => {}} />);
+    render(
+      <BrowserRouter>
+        <LoginInput login={() => {}} />
+      </BrowserRouter>
+    );
     const emailInput = await screen.getByPlaceholderText('Email');
 
     // Action
-    await userEvent.type(emailInput, 'emailtest');
+    await waitFor(() => userEvent.type(emailInput, 'emailtest'));
 
     // Assert
     expect(emailInput).toHaveValue('emailtest');
@@ -29,11 +34,15 @@ describe('LoginInput component', () => {
 
   it('should handle password typing correctly', async () => {
     // Arrange
-    render(<LoginInput login={() => {}} />);
+    render(
+      <BrowserRouter>
+        <LoginInput login={() => {}} />
+      </BrowserRouter>
+    );
     const passwordInput = await screen.getByPlaceholderText('Password');
 
     // Action
-    await userEvent.type(passwordInput, 'passwordtest');
+    await waitFor(() => userEvent.type(passwordInput, 'passwordtest'));
 
     // Assert
     expect(passwordInput).toHaveValue('passwordtest');
@@ -42,15 +51,19 @@ describe('LoginInput component', () => {
   it('should call login function when login button is clicked', async () => {
     // Arrange
     const mockLogin = jest.fn();
-    render(<LoginInput login={mockLogin} />);
+    render(
+      <BrowserRouter>
+        <LoginInput login={mockLogin} />
+      </BrowserRouter>
+    );
     const emailInput = await screen.getByPlaceholderText('Email');
-    await userEvent.type(emailInput, 'emailtest');
+    await waitFor(() => userEvent.type(emailInput, 'emailtest'));
     const passwordInput = await screen.getByPlaceholderText('Password');
-    await userEvent.type(passwordInput, 'passwordtest');
+    await waitFor(() => userEvent.type(passwordInput, 'passwordtest'));
     const loginButton = await screen.getByRole('button', { name: 'Login' });
 
     // Action
-    await userEvent.click(loginButton);
+    await waitFor(() => userEvent.click(loginButton));
 
     // Assert
     expect(mockLogin).toBeCalledWith({
