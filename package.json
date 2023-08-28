@@ -20,6 +20,7 @@
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
     "redux-toolkit": "^1.1.2",
+    "start-server-and-test": "^2.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -28,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src",
-    "e2e": "cypress run"
+    "e2e": "cypress run",
+    "ci:test": "react-scripts test --watchAll=false && start-server-and-test start http-get://0.0.0.0:3000 e2e"
   },
   "eslintConfig": {
     "extends": [
