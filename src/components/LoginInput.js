@@ -43,7 +43,7 @@ export default function LoginInput({ login }) {
             onClick={() => login({ email, password })}
             aria-label="Login"
           >
-            Masuk
+            Sign In
           </Button>
         </Box>
         <div className="text-sm font-medium text-gray-500">
