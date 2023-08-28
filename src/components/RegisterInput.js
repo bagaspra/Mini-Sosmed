@@ -15,15 +15,17 @@ export default function RegisterInput({ register }) {
         </h5>
         <div>
           <label
-            htmlFor="name"
+            htmlFor="fullName"
             className="block mb-2 text-sm font-medium text-gray-900 "
           >
             Nama Lengkap
             <input
+              name="fullName"
+              id="fullName"
               type="text"
               value={name}
               onChange={onNameChange}
-              placeholder="Nama..."
+              placeholder="Name"
               className="bg-gray-50 mt-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
@@ -36,10 +38,11 @@ export default function RegisterInput({ register }) {
           >
             Email
             <input
+              id="email"
               type="email"
               value={email}
               onChange={onEmailChange}
-              placeholder="Alamat Email..."
+              placeholder="Email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
@@ -52,10 +55,12 @@ export default function RegisterInput({ register }) {
           >
             Password
             <input
+              name="password"
+              id="password"
               type="password"
               value={password}
               onChange={onPasswordChange}
-              placeholder="Password..."
+              placeholder="Password"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
             />
@@ -64,7 +69,6 @@ export default function RegisterInput({ register }) {
         <button
           type="button"
           onClick={() => register({ name, email, password })}
-          aria-label="Register"
           className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
         >
           Sign Up
@@ -72,8 +76,7 @@ export default function RegisterInput({ register }) {
         <div className="text-sm font-medium text-gray-500">
           Sudah punya akun?
           <Link className="link text-blue-700 hover:underline" to="/">
-            {' '}
-            Login{' '}
+            Login
           </Link>
         </div>
       </form>
